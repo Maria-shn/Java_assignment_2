@@ -1,14 +1,45 @@
+import java.util.LinkedList;
+/**
+ * implements FIFO using a node-based linkedlist
+ */
 public class Queue <T> {
-    private int[] queue 
+    private LinkedList<T> queue ; 
      /**
      * A standard constructor for the Patient class
      *
-     * @param queue - creates an array of length 1
+     * @param queue - creates an empty linkedlist
      */
      public Queue(){
-        this.queue = new int[1];
+        this.queue = new LinkedList<T>();
     }
+
+    /**
+     * Adds t to the data structure
+     * @param t
+     */
     public void add(T t){
-        
+        this.queue.add(t);
     }
+
+     /**
+     * Returns and removes the first / highest priority element.
+     * @return first element in the list
+     */
+    public T get(){
+       T toRemove = this.queue.getFirst();
+       this.queue.removeFirst();
+       return toRemove;
+    }
+
+    /**
+     * Removes an element equal to t from the data structure, if exists. if multiple elements exist, remove first one.
+     * @param t
+     */
+
+    public void remove(T t){
+        this.queue.remove(t);
+    }
+    
+
+
 }
