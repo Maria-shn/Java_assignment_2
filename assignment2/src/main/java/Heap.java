@@ -2,19 +2,16 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 public class Heap<T extends Comparable<T>>  {
     private T[] heap ;
-    private int size ; //shows size of the array
     private int max ; //index of last element in the array
     final static int firstSize = 1;
 
     public Heap(){
         this.heap = (T[]) Array.newInstance(Comparable.class, firstSize);
-        this.size = 1;
         this.max = 0;
     }
 
     public Heap(int n){
         this.heap = (T[]) Array.newInstance(Comparable.class, n);
-        this.size = n;
         this.max = 0;  
     }
 
@@ -23,18 +20,17 @@ public class Heap<T extends Comparable<T>>  {
      */
 
     public void add(T t) {
-        if(this.max +1 != this.size){
+        if(this.max +1 != this.heap.length){
             percUp(this.max+1, t, this.heap);
-            this.max +=1;
             }
         else{
-            Heap<T> bigHeap = new Heap(size*2);
-            for (int i = 1; i< this.size; i++){
+            Heap<T> bigHeap = new Heap(this.heap.length*2);
+            for (int i = 1; i< this.heap.length; i++){
                 bigHeap.heap[i] = this.heap[i];
             }
-           
-            
-        }
+            percUp(this.max+1, t, bigHeap.heap);
+            this.heap = bigHeap.heap;
+        }this.max +=1;
 
         }
     
@@ -57,6 +53,21 @@ public class Heap<T extends Comparable<T>>  {
             percUp(parInd, t, arr);
         }
 
+    }
+
+    /**
+     * Returns and removes the first / highest priority element.
+     * @return element of highest priority
+     */
+
+    /**public T get(){
+        if (this.max == 0){
+            throw new IllegalStateException();
+        } else{
+            T toRemove = this.heap[1];
+        
+        }
+        */
     }
 
    
