@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Arrays;
 public class Heap<T extends Comparable<T>>  {
     private T[] heap ;
     private int size ; //shows size of the array
@@ -17,14 +18,21 @@ public class Heap<T extends Comparable<T>>  {
         this.max = 0;  
     }
 
+    /** adds t to the array. Elements will be added from index 1,
+     *  meaning the cell with index 0 will remain always empty
+     */
+
     public void add(T t) {
-        if(this.max != this.size){
-            percUp(max+1, t, this.heap);
+        if(this.max +1 != this.size){
+            percUp(this.max+1, t, this.heap);
             this.max +=1;
             }
         else{
             Heap<T> bigHeap = new Heap(size*2);
-            int i =0;
+            for (int i = 1; i< this.size; i++){
+                bigHeap.heap[i] = this.heap[i];
+            }
+           
             
         }
 
@@ -51,18 +59,8 @@ public class Heap<T extends Comparable<T>>  {
 
     }
 
-    /**
-     * when there is no space left in the current array percdown will copy the current array to the emptyArr 
-     * and add t to the right position
-     * TO BE FINISHED
-     */
-
-     public void percDown(int index, T t, T[] arr, T[] emptyArr){
-        if(t.compareTo(arr[index])>0){
-            emptyArr[index] = t;
-
-        }
-     }
+   
+     
 
 
 
