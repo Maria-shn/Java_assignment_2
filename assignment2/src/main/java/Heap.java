@@ -17,6 +17,7 @@ public class Heap<T extends Comparable<T>>  {
 
     /** adds t to the array. Elements will be added from index 1,
      *  meaning the cell with index 0 will remain always empty
+     * @param t
      */
 
     public void add(T t) {
@@ -60,14 +61,56 @@ public class Heap<T extends Comparable<T>>  {
      * @return element of highest priority
      */
 
-    /**public T get(){
+    public T get(){
         if (this.max == 0){
             throw new IllegalStateException();
         } else{
             T toRemove = this.heap[1];
+            T percolate = this.heap[this.max];
+            this.heap[this.max] = null;
+            percDown(1, percolate, this.max, this.heap);
+            return toRemove;
+
         
         }
-        */
+        
+    }
+
+    public void percDown(int index, T t, int n, T[] arr){
+        if(2*index > n){
+            arr[index] = t;
+        }else if(2*index==n){
+            if(arr[2*index].compareTo(t)>0){
+                arr[index] = arr[2*index];
+                arr[2*index] = t;
+            } else{
+                arr[index] = t;
+            }
+        }else{
+            int j = 2*index;
+            if(arr[2*index].compareTo(arr[2*index+1])<0){
+                j = 2*index +1;
+            }
+            if(arr[j].compareTo(t)>0){
+                arr[index] = arr[j];
+                percDown(j, t, n, arr);
+            } else{
+                arr[index] = t;
+            }
+        }
+    }
+
+    public void remove(T t){
+        int i = 1;
+        while(this.heap[i]!= t || i<=this.max){
+            i++;
+        }
+        if(i <=this.max){
+            this.heap[i] = null;
+            T percolate = this.heap[this.max];
+            this.heap[this.max] = null;
+            percDown(i, percolate, this.max, this.heap);
+        }
     }
 
    
