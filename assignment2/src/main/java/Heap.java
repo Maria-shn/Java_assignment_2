@@ -100,6 +100,12 @@ public class Heap<T extends Comparable<T>>  {
         }
     }
 
+    /**
+     * Removes an element equal to t from the data structure, if exists. 
+     * if multiple elements exist, remove the first one. 
+     * @param t to be removed
+     */
+
     public void remove(T t){
         int i = 1;
         while(this.heap[i]!= t || i<=this.max){
