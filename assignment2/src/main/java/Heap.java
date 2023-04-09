@@ -1,5 +1,4 @@
 import java.lang.reflect.Array;
-import java.util.Arrays;
 public class Heap<T extends Comparable<T>>  {
     private T[] heap ;
     private int max ; //index of last element in the array
