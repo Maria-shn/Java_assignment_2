@@ -22,7 +22,7 @@ public class Queue <T> {
     }
 
      /**
-     * Returns and removes the first / highest priority element.
+     * Returns and removes the first element.
      * @return first element in the list
      */
     public T get(){
@@ -32,7 +32,8 @@ public class Queue <T> {
     }
 
     /**
-     * Removes an element equal to t from the data structure, if exists. if multiple elements exist, remove first one.
+     * Removes an element equal to t from the data structure, if exists.
+     *  if multiple elements exist, remove first one.
      * @param t
      */
 

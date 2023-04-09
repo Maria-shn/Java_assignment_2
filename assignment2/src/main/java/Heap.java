@@ -6,21 +6,22 @@ public class Heap<T extends Comparable<T>>  {
 
     public Heap(){
         this.heap = (T[]) Array.newInstance(Comparable.class, firstSize);
-        this.max = 0;
+        this.max = 0; // array elements are added from index 1
     }
 
     public Heap(int n){
         this.heap = (T[]) Array.newInstance(Comparable.class, n);
-        this.max = 0;  
+        this.max = 0;   // array elements are added from index 1
     }
 
     /** adds t to the array. Elements will be added from index 1,
-     *  meaning the cell with index 0 will remain always empty
+     *  meaning the cell with index 0 will always remain empty
+     * If the array is full, then a new array twice the size is created;
      * @param t
      */
 
     public void add(T t) {
-        if(this.max +1 != this.heap.length){
+        if(this.max +1 < this.heap.length){
             percUp(this.max+1, t, this.heap);
             }
         else{
@@ -30,18 +31,19 @@ public class Heap<T extends Comparable<T>>  {
             }
             percUp(this.max+1, t, bigHeap.heap);
             this.heap = bigHeap.heap;
-        }this.max +=1;
+        }
+        this.max +=1;
 
         }
     
     /**
      * adds t to its proper position in the array
-     * @param index
-     * @param t
-     * @param arr
+     * @param index that we consider
+     * @param t data to be inserted
+     * @param arr that stores the heap
      */
     public void percUp(int index, T t, T[] arr){
-        int parInd = (int) (index/2);
+        int parInd = (int) (index/2); //parent Index
         if(index ==1){
             arr[index] = t;
         }
@@ -62,7 +64,7 @@ public class Heap<T extends Comparable<T>>  {
 
     public T get(){
         if (this.max == 0){
-            throw new IllegalStateException();
+            return null;
         } else{
             T toRemove = this.heap[1];
             T percolate = this.heap[this.max];
