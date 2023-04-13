@@ -43,18 +43,23 @@ public class Heap<T extends Comparable<T>>  {
      * @param arr that stores the heap
      */
     public void percUp(int index, T t, T[] arr){
+        while(true){ 
         int parInd = (int) (index/2); //parent Index
         if(index ==1){
             arr[index] = t;
+            break;
         }
         else if(t.compareTo(arr[parInd])<0){
             arr[index] = t;
+            break;
         }
         else{
             arr[index] = arr[parInd];
-            percUp(parInd, t, arr);
+            index = parInd;
         }
 
+        }
+        
     }
 
     /**
@@ -78,8 +83,10 @@ public class Heap<T extends Comparable<T>>  {
     }
 
     public void percDown(int index, T t, int n, T[] arr){
-        if(2*index > n){
+        while(true){
+            if(2*index > n){
             arr[index] = t;
+            break;
         }else if(2*index==n){
             if(arr[2*index].compareTo(t)>0){
                 arr[index] = arr[2*index];
@@ -87,6 +94,7 @@ public class Heap<T extends Comparable<T>>  {
             } else{
                 arr[index] = t;
             }
+            break;
         }else{
             int j = 2*index;
             if(arr[2*index].compareTo(arr[2*index+1])<0){
@@ -94,10 +102,12 @@ public class Heap<T extends Comparable<T>>  {
             }
             if(arr[j].compareTo(t)>0){
                 arr[index] = arr[j];
-                percDown(j, t, n, arr);
+                index = j;
             } else{
                 arr[index] = t;
+                break;
             }
+        }
         }
     }
 
