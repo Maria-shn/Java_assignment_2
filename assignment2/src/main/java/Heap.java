@@ -73,7 +73,6 @@ public class Heap<T extends Comparable<T>> {
             return null;
         } else {
             T toRemove = this.heap[1];
-            System.out.println(toRemove);
             T percolate = this.heap[this.max];
             this.heap[this.max] = null;
             percDown(1, percolate, this.max, this.heap);
