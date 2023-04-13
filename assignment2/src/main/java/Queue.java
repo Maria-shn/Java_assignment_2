@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Queue <T> {
     private LinkedList<T> queue ; 
      /**
-     * A standard constructor for the Patient class
+     * A standard constructor for the Queue class
      *
      * @param queue - creates an empty linkedlist
      */
@@ -26,6 +26,9 @@ public class Queue <T> {
      * @return first element in the list
      */
     public T get(){
+        if(this.queue.isEmpty()){
+            return null;
+        }
        T toRemove = this.queue.getFirst();
        this.queue.removeFirst();
        return toRemove;
@@ -40,7 +43,4 @@ public class Queue <T> {
     public void remove(T t){
         this.queue.remove(t);
     }
-    
-
-
 }
