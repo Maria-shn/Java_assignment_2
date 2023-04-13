@@ -2,10 +2,12 @@ public class Manager <T extends Comparable<T>> {
 
     private Heap<T> heap;
     private Queue<T> queue;
+    private int size;
 
     public Manager(){
         this.heap = new Heap();
         this.queue = new Queue();
+        this.size = 0;
     }
 
     /**
@@ -16,6 +18,7 @@ public class Manager <T extends Comparable<T>> {
     public void add(T t) {
         this.heap.add(t);
         this.queue.add(t);
+        this.size +=1;
     }
 
     /**
@@ -26,6 +29,7 @@ public class Manager <T extends Comparable<T>> {
     public T getByCreationTime(){
         T t = this.queue.get();
         this.heap.remove(t);
+        this.size -=1;
         return t;
     }
 
@@ -37,8 +41,11 @@ public class Manager <T extends Comparable<T>> {
     public T getByPriority(){
         T t = this.heap.get();
         this.queue.remove(t);
+        this.size -=1;
         return t;
     }
-}
-   
 
+    public int getSize(){
+        return this.size;
+    }
+}
