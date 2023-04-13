@@ -99,5 +99,11 @@ public class Patient implements Comparable<Patient>{
         if(p.isVip() != this.isVip()) return false;
         return true;
     }
-}
 
+    @Override
+    public String toString(){
+        StringBuilder stringPatient = new StringBuilder();
+        stringPatient.append("id: " + this.id + "\n" + "vip: " + this.vip + "\n" + "priority: " + this.priority);
+        return stringPatient.toString();
+    }
+}
