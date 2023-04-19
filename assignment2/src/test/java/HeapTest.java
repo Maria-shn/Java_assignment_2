@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HeapTest {
 
-    //@Test
+    @Test
     void generalTestHeap() {
         Heap<Integer> heap = new Heap<>();
         heap.add(2);
@@ -16,13 +16,13 @@ class HeapTest {
         assertEquals(1, heap.get());
     }
 
-    //@Test
+    @Test
     void testEmptyHeap() {
         Heap<Integer> heap = new Heap<>();
         assertEquals(null, heap.get());
     }
 
-    //@Test
+    @Test
     void generalTestHeap2() {
         Heap<Integer> heap = new Heap<>();
         heap.add(2);
