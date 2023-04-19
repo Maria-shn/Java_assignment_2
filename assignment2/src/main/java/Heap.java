@@ -44,21 +44,18 @@ public class Heap<T extends Comparable<T>> {
      * @param arr   that stores the heap
      */
     public void percUp(int index, T t, T[] arr) {
-        while (true) {
-            int parInd = (int) (index / 2); //parent Index
-            if (index == 1) {
-                arr[index] = t;
-                break;
-            } else if (t.compareTo(arr[parInd]) < 0) {
+        int parInd = index / 2; //parent Index
+        while (parInd > 0) {
+            if (t.compareTo(arr[parInd]) < 0) {
                 arr[index] = t;
                 break;
             } else {
                 arr[index] = arr[parInd];
-                index = parInd;
+                index /= 2;
+                parInd /= 2;
             }
-
         }
-
+        arr[index] = t;
     }
 
     /**
