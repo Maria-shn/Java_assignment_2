@@ -22,7 +22,7 @@ public class Heap<T extends Comparable<T>> {
      * @param t
      */
 
-    public void add(T t) {
+    /**public void add(T t) {
         if (this.max + 1 < this.heap.length) {
             percUp(this.max + 1, t, this.heap);
         } else {
@@ -35,6 +35,18 @@ public class Heap<T extends Comparable<T>> {
         }
         this.max += 1;
 
+    }*/
+
+    public void add(T t) {
+        if (this.max + 1 == this.heap.length) {
+            Heap<T> bigHeap = new Heap(this.heap.length * 2);
+            for (int i = 1; i < this.heap.length; i++) {
+                bigHeap.heap[i] = this.heap[i];
+            }
+            this.heap = bigHeap.heap;
+        }
+        percUp(this.max + 1, t, this.heap);
+        this.max += 1;
     }
 
     /**
