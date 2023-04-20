@@ -72,40 +72,42 @@ public class Heap<T extends Comparable<T>> {
             this.heap[1] = this.heap[max];
             this.heap[this.max] = null;
             this.max -= 1;
-            percDown(1, this.heap[1], this.heap);
+            percDown(1, this.heap);
             return toRemove;
         }
     }
 
-    public void percDown(int index, T t, T[] arr) {
-        while (true) {
-            if (2 * index > this.max) {
-                break;
-            } else if (2 * index == this.max) {
-                if (arr[2 * index] == null) {
-                    arr[index] = t;
-                    break;
-                }
+ /*   public void percDown(int index, T t, T[] arr) {
+        while (2 * index <= this.max) {
+            T t = arr[index];
+            if (2 * index == this.max) {
                 if (arr[2 * index].compareTo(t) > 0) {
                     arr[index] = arr[2 * index];
                     arr[2 * index] = t;
                 }
                 break;
             } else {
-                int j = 2 * index;
-
-                if (arr[2 * index] != null && arr[2 * index + 1] != null && arr[2 * index].compareTo(arr[2 * index + 1]) < 0) {
-                    j = 2 * index + 1;
-                }
-
-                if (arr[j].compareTo(t) > 0) {
+                int j = arr[2 * index].compareTo(arr[2 * index + 1]) < 0 ? 2 * index : 2 * index + 1;
+                if (arr[j].compareTo(arr[index]) > 0) {
                     arr[index] = arr[j];
-                    arr[j] = null;
+                    arr[j] = t;
                     index = j;
-                } else {
-                    arr[index] = t;
-                    break;
                 }
+            }
+        }
+    }*/
+
+    public void percDown(int index, T[] arr) {
+        while (2 * index <= this.max) {
+            T t = arr[index];
+            int j = 2 * index;
+            if (j < this.max && arr[j].compareTo(arr[j + 1]) < 0) {
+                j++;
+            }
+            if (arr[j].compareTo(t) > 0) {
+                arr[index] = arr[j];
+                arr[j] = t;
+                index = j;
             }
         }
     }
@@ -140,7 +142,7 @@ public class Heap<T extends Comparable<T>> {
                 this.heap[i] = this.heap[this.max];
                 this.heap[this.max] = null;
                 this.max --;
-                percDown(i, this.heap[i], this.heap);
+                percDown(i, this.heap);
             }
         }
     }
