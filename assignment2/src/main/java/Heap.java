@@ -123,7 +123,7 @@ public class Heap<T extends Comparable<T>> {
      * @param t to be removed
      */
 
-    public void remove(T t) {
+    /*public void remove(T t) {
         if (this.max > 0) {
 
             int i = 1;
@@ -131,6 +131,18 @@ public class Heap<T extends Comparable<T>> {
                 i++;
             }
             if (i <= this.max) {
+                this.heap[i] = null;
+                T percolate = this.heap[this.max];
+                this.heap[this.max] = null;
+                percDown(i, percolate, this.max, this.heap);
+                this.max --;
+            }
+        }
+    }*/
+
+    public void remove(T t) {
+        for (int i = 1; i <= this.max; i++){
+            if (this.heap[i] == t){
                 this.heap[i] = null;
                 T percolate = this.heap[this.max];
                 this.heap[this.max] = null;
