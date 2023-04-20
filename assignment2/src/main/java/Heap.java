@@ -71,21 +71,18 @@ public class Heap<T extends Comparable<T>> {
             T toRemove = this.heap[1];
             T percolate = this.heap[this.max];
             this.heap[this.max] = null;
-            percDown(1, percolate, this.max, this.heap);
             this.max -= 1;
+            percDown(1, percolate, this.heap);
             return toRemove;
-
-
         }
-
     }
 
-    public void percDown(int index, T t, int n, T[] arr) {
+    public void percDown(int index, T t, T[] arr) {
         while (true) {
-            if (2 * index > n) {
+            if (2 * index > this.max) {
                 arr[index] = t;
                 break;
-            } else if (2 * index == n) {
+            } else if (2 * index == this.max) {
                 if (arr[2 * index] == null) {
                     arr[index] = t;
                     break;
@@ -143,11 +140,10 @@ public class Heap<T extends Comparable<T>> {
     public void remove(T t) {
         for (int i = 1; i <= this.max; i++){
             if (this.heap[i] == t){
-                this.heap[i] = null;
-                T percolate = this.heap[this.max];
+                this.heap[i] = this.heap[this.max];
                 this.heap[this.max] = null;
-                percDown(i, percolate, this.max, this.heap);
                 this.max --;
+                percDown(i, this.heap[i], this.heap);
             }
         }
     }
