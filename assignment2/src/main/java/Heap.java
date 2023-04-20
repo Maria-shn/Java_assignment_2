@@ -69,10 +69,10 @@ public class Heap<T extends Comparable<T>> {
             return null;
         } else {
             T toRemove = this.heap[1];
-            T percolate = this.heap[this.max];
+            this.heap[1] = this.heap[max];
             this.heap[this.max] = null;
             this.max -= 1;
-            percDown(1, percolate, this.heap);
+            percDown(1, this.heap[1], this.heap);
             return toRemove;
         }
     }
@@ -80,7 +80,6 @@ public class Heap<T extends Comparable<T>> {
     public void percDown(int index, T t, T[] arr) {
         while (true) {
             if (2 * index > this.max) {
-                arr[index] = t;
                 break;
             } else if (2 * index == this.max) {
                 if (arr[2 * index] == null) {
