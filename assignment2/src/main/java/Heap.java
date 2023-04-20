@@ -89,8 +89,6 @@ public class Heap<T extends Comparable<T>> {
                 if (arr[2 * index].compareTo(t) > 0) {
                     arr[index] = arr[2 * index];
                     arr[2 * index] = t;
-                } else {
-                    arr[index] = t;
                 }
                 break;
             } else {
