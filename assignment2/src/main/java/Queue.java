@@ -29,9 +29,9 @@ public class Queue <T> {
         if(this.queue.isEmpty()){
             return null;
         }
-       T toRemove = this.queue.getFirst();
-       this.queue.removeFirst();
-       return toRemove;
+        T toRemove = this.queue.getFirst();
+        this.queue.removeFirst();
+        return toRemove;
     }
 
     /**
